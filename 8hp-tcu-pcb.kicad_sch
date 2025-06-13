@@ -10,6 +10,16 @@
 		(company "Joelathan Racing")
 	)
 	(lib_symbols)
+	(text "Measure resistance of each solenoid to figure out current\nDetermine the magnitude & ripple of voltage spikes using experimental testing (get a cheap scope)\n"
+		(exclude_from_sim no)
+		(at 125.476 46.736 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "35190209-d28b-4ae2-9ad8-4a643583c057")
+	)
 	(text "D2-D13 are PWM pins, so I can use them for shift solenoids (= gate drivers)\nPlenty of digital pins availible for button presses\nMCP2515 CAN transiever communicates using SPI, so keep those pins free (D50-D53?)\nGet the measurements of an actual board so you can solder directly to your PCB"
 		(exclude_from_sim no)
 		(at 136.398 134.874 0)
@@ -20,15 +30,53 @@
 		)
 		(uuid "53ea338c-d473-496d-825e-4c2387714e6e")
 	)
-	(text "1) Input protection: reverse polarity + voltage transient protection\n2) Low-side switching of shift solenoids: proper ground traces to handle total current from all solenoids\n- Fuse it + may require regulation on the positive side\n3) Custom footprint for 2560 shield & any other required components\n- Make sure I have enough PWM pins (more than enough digital pins & analog inputs for buttons)\n\nBoard Sections\n1) 12V protected input for Arduino, gate drivers, and MOSFETs\n2) Voltage regulator/power supply for gate driver outputs (required?)\n3) 5V supply for CAN transiever \n4) Flyback protection for MOSFETs\n\nComponents: Arduino, programming header, CAN transiever, gate drivers, MOSFETs, flyback protection, (if needed) USB header for programming"
+	(text "Components on Shield PCB: gate drivers + MOSFETs, power supplies, CAN transiever, I/O signal conditioning\nOther transmission inputs: input & output speed sensors, transmission temp sensor, park position sensor (oil pressure accumulator?)\nButton inputs: PRND selector, upshift, downshift\nProtections: reverse polarity, transient voltage, flyback protection for MOSFETs (might be built-in to ZF)\n\nBoard Sections\n1a) 12V protected (reverse polarity, transient) input for Arduino\n- Reverse polarity: P-channel FET\n- Transient: not sure (clamp w/ diodes?)\n1b) Buck/boost converter to provide constant 12V to gate drivers - proper voltage and current for all of them firing\n2) 5V supply & CAN line protection for MCP2515 CAN transiever\n- Input protection: TVS diodes?\n3) Powerstage (low-side MOSFETs + gate drivers, maybe flyback protection)\n- Shift solenoid high-side supply is fused\n- Gate drivers should have dedicated supply?\n- Beefy ground trace and lug connection separate to Arduino, gate drivers, CAN transiever GND"
 		(exclude_from_sim no)
-		(at 126.492 75.184 0)
+		(at 127.254 98.298 0)
 		(effects
 			(font
 				(size 1.905 1.905)
 			)
 		)
 		(uuid "a9c1e006-172b-419d-b151-136ac2b4b448")
+	)
+	(sheet
+		(at 100.33 172.72)
+		(size 36.83 12.7)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "89d4e4c6-b5f8-4ed8-ac30-a844bf37116f")
+		(property "Sheetname" "Main Board"
+			(at 100.33 172.0084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "main-board.kicad_sch"
+			(at 100.33 186.0046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "8hp-tcu-pcb"
+				(path "/fab55a76-018d-479e-806d-47398c1ea91a"
+					(page "2")
+				)
+			)
+		)
 	)
 	(sheet_instances
 		(path "/"
