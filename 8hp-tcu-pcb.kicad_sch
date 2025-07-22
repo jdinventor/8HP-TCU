@@ -30,7 +30,7 @@
 		)
 		(uuid "53ea338c-d473-496d-825e-4c2387714e6e")
 	)
-	(text "Components on Shield PCB: gate drivers + MOSFETs, power supplies, CAN transiever, I/O signal conditioning\nOther transmission inputs: input & output speed sensors, transmission temp sensor, park position sensor (oil pressure accumulator?)\nButton inputs: PRND selector, upshift, downshift\nProtections: reverse polarity, transient voltage, flyback protection for MOSFETs (might be built-in to ZF)\n\nBoard Sections\n1a) 12V protected (reverse polarity, transient) input for Arduino\n- Reverse polarity: P-channel FET\n- Transient: not sure (clamp w/ diodes?)\n1b) Buck/boost converter to provide constant 12V to gate drivers - proper voltage and current for all of them firing\n2) 5V supply & CAN line protection for MCP2515 CAN transiever\n- Input protection: TVS diodes?\n3) Powerstage (low-side MOSFETs + gate drivers, maybe flyback protection)\n- Shift solenoid high-side supply is fused\n- Gate drivers should have dedicated supply?\n- Beefy ground trace and lug connection separate to Arduino, gate drivers, CAN transiever GND"
+	(text "Components on Shield PCB: gate drivers + MOSFETs, power supplies, CAN transiever, I/O signal conditioning\nOther transmission inputs: input & output speed sensors, transmission temp sensor, park position sensor (oil pressure accumulator?)\nButton inputs: PRND selector, upshift, downshift\nProtections: reverse polarity, transient voltage, flyback protection for MOSFETs (might be built-in to ZF)\n\nBoard Sections\n1a) 12V protected (reverse polarity, transient) input for Arduino\n- Reverse polarity: P-channel FET\n- Transient: not sure (clamp w/ diodes?)\n1b) Buck/boost converter to provide constant 20V to gate drivers - proper voltage and current for all of them firing\n2) 5V supply & CAN line protection for MCP2515 CAN transiever\n- Input protection: TVS diodes?\n3) Powerstage (low-side MOSFETs + gate drivers, and flyback protection)\n- Shift solenoid high-side supply is fused\n- Gate drivers should have dedicated supply?\n- Beefy ground trace and lug connection separate to Arduino, gate drivers, CAN transiever GND"
 		(exclude_from_sim no)
 		(at 127.254 98.298 0)
 		(effects
@@ -52,7 +52,7 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "89d4e4c6-b5f8-4ed8-ac30-a844bf37116f")
-		(property "Sheetname" "Main Board"
+		(property "Sheetname" "Power Stage"
 			(at 100.33 172.0084 0)
 			(effects
 				(font
